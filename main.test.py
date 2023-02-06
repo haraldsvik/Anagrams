@@ -6,7 +6,7 @@ from main import find_anagrams, read_file, remove_anagrams_with_one_name
 
 class OppgaveTest(unittest.TestCase):
     def setUp(self):
-        self.population = read_file("population.txt")
+        self.population = read_file("./data/population.txt")
 
     def test_input_is_not_none(self):
         self.assertIsNotNone(self.population)

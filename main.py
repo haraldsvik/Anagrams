@@ -30,7 +30,7 @@ def find_anagrams(names):
 
 
 def run():
-    population = read_file("population.txt")
+    population = read_file("./data/larger_population.txt")
 
     before = time.time()
     anagrams = find_anagrams(population)
