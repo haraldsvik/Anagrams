@@ -16,7 +16,6 @@ def remove_anagrams_with_one_name(anagrams):
 
 def find_anagrams(names):
     obj = {}
-    anagrams_with_two_or_more_names = {}
 
     for name in names:
         sorted_name = ''.join(sorted(name.lower()))
@@ -30,18 +29,18 @@ def find_anagrams(names):
     return list(obj.values())
 
 
+
 def run():
-    population = read_file("./data/population.txt")
+    population = read_file("./data/larger_population.txt")
 
     before = time.time()
     anagrams = find_anagrams(population)
     no_duplicates = remove_anagrams_with_one_name(anagrams)
     after = time.time()
-
     time_taken = format(((after - before) * 1000), '.2f')
 
     print(no_duplicates)
-    print(f"Time taken: {time_taken} ms")
+    print(f"Time taken: {time_taken} ms")   
 
 
 if __name__ == "__main__":
