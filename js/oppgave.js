@@ -18,17 +18,17 @@ const findAnagrams = (names) => {
   let len = names.length
   while (len--) {
     let name = names[len]
-    let sortedName = name.toLowerCase().split('').sort();
+    let sortedName = name.toLowerCase().split('').sort(); // TODO: 
     if (!obj[sortedName]) {
       obj[sortedName] = []
       obj[sortedName].push(name)
     } else {
-      if (obj[sortedName].indexOf(name) === -1) {
+      if (obj[sortedName].indexOf(name) === -1) { //TODO: 
         obj[sortedName].push(name)
       }
     }
   }
-  return Object.values(obj).filter((v) => v.length > 1)
+  return Object.values(obj).filter((v) => v.length > 1) // TODO: 
 }
 
 
