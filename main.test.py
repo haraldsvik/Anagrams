@@ -1,12 +1,12 @@
 import time
 import unittest
 
-from main import find_anagrams, read_file, remove_anagrams_with_one_name
+from main import find_anagrams, find_anagrams_alt, read_file, remove_anagrams_with_one_name
 
 
 class OppgaveTest(unittest.TestCase):
     def setUp(self):
-        self.population = read_file("./data/population.txt")
+        self.population = read_file("./data/larger_population.txt")
 
     def test_input_is_not_none(self):
         self.assertIsNotNone(self.population)
@@ -54,8 +54,8 @@ class OppgaveTest(unittest.TestCase):
         time_taken = (after - before) * 1000
         name_lenght = len(self.population)
         time_per_name = time_taken / name_lenght
-
-        # 0.0015 ms per name is an arbitrary limit
+        # 0.0015 ms per name is an arbitrary limit, the larger the dataset the less time
+        # is used for setup / and other things so should go down as the dataset grows
         self.assertTrue(time_per_name < 0.0015)
 
 

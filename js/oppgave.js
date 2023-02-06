@@ -1,4 +1,5 @@
 const { open } = require("fs/promises")
+const path = require("path")
 // time complexity:
 // +size of population
 // +length of words
@@ -33,7 +34,8 @@ const findAnagrams = (names) => {
 
 
 async function run() {
-  const names = await readFile('population.txt')
+ 
+  const names = await readFile('./data/larger_population.txt')
   console.time('findAnagrams')
   const results = findAnagrams(names)
   console.timeLog('findAnagrams', "readFile ferdig")
