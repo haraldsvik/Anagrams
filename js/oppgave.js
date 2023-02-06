@@ -4,17 +4,27 @@ const { open } = require("fs/promises")
 // +length of words
 // +number of anagrams
 // = 
-async function findAnagrams() {
-  const file = await open("population.txt")
-  let obj = {}
+const readFile = async (filename) => {
+  let list = []
+  const file = await open(filename)
   for await (const line of file.readLines()) {
-    let s = line.toLowerCase().split('').sort();
-    if (!obj[s]) {
-      obj[s] = []
-      obj[s].push(line)
+    list.push(line)
+  }
+  return list
+}
+
+const findAnagrams = (names) => {
+  let obj = {}
+  let len = names.length
+  while (len--) {
+    let name = names[len]
+    let sortedName = name.toLowerCase().split('').sort();
+    if (!obj[sortedName]) {
+      obj[sortedName] = []
+      obj[sortedName].push(name)
     } else {
-      if (obj[s].indexOf(line) === -1) {
-        obj[s].push(line)
+      if (obj[sortedName].indexOf(name) === -1) {
+        obj[sortedName].push(name)
       }
     }
   }
@@ -22,10 +32,13 @@ async function findAnagrams() {
 }
 
 
-console.time('findAnagrams')
-findAnagrams().then((results) => {
-  console.timeLog('findAnagrams', "findAnagrams ferdig")
+async function run() {
+  const names = await readFile('population.txt')
+  console.time('findAnagrams')
+  const results = findAnagrams(names)
+  console.timeLog('findAnagrams', "readFile ferdig")
   console.log('results : ', JSON.stringify(results, null, 2))
   console.timeEnd('findAnagrams')
-})
+}
 
+run()
