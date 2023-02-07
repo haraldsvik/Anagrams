@@ -6,7 +6,12 @@ def read_file(file_name):
     names = []
     with open(file_name, "r") as f:
         for line in f:
-            names.append(line.strip())
+            # remove whitespace
+            # dont include empty lines
+            # dont include names with numbers
+            if line.strip() and not any(char.isdigit() for char in line):
+              names.append(line.strip())
+              
     return names
 
 
@@ -29,18 +34,21 @@ def find_anagrams(names):
     return list(obj.values())
 
 
-
 def run():
-    population = read_file("./data/larger_population.txt")
+    population = read_file("./data/babynames.txt")
 
     before = time.time()
+
     anagrams = find_anagrams(population)
     no_duplicates = remove_anagrams_with_one_name(anagrams)
+
     after = time.time()
     time_taken = format(((after - before) * 1000), '.2f')
 
-    print(no_duplicates)
-    print(f"Time taken: {time_taken} ms")   
+    for anagram in no_duplicates:
+        print(anagram)
+
+    print(f"Time taken: {time_taken} ms")
 
 
 if __name__ == "__main__":
